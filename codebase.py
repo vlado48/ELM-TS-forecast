@@ -284,7 +284,7 @@ def next_day(dataset):
                              X_valid, y_valid, directional=True, n=2000)
     # Last k points for first out of sample prediction
 #    latest = np.array(t_series[-k:]).reshape((1,-1))
-    next_dir = directional(X_valid[-1])
+    next_dir = directional(X_test[-1])
     next_dir = 'Bearish' if next_dir.argmax()==0 else 'Bullish'
 
     # PRICE PREDICTION
@@ -296,7 +296,7 @@ def next_day(dataset):
                              X_valid, y_valid, n=2000)
     # Last k points for first out of sample prediction
 #    latest = np.array(t_series[-k:]).reshape((1,-1))    
-    next_move = pricemove(X_valid[-1])
+    next_move = pricemove(X_test[-1])
     next_move = next_move * std_norm + u_norm
     
     return next_dir, next_move
